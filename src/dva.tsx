@@ -23,9 +23,9 @@ function createApp(options?: any) {
       // }
     },
     effects: {
-      * preAdd({payload}, {call, put}){
-        console.log("liwenliang")
-        yield console.log("hhhhhxx")
+      *preAdd({payload}, {call, put}){
+        console.log("preAdd")
+        yield put({type:'add'})
       }
     }
   })

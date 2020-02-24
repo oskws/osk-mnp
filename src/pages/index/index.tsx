@@ -1,6 +1,9 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import {connect} from '@tarojs/redux'
-import { View, Text, Button } from '@tarojs/components'
+
+import { View, Text, } from '@tarojs/components'
+import {AtButton,AtIcon,AtToast} from 'taro-ui'
+
 import './index.less'
 
 const mapStateToProps = state=>{
@@ -12,10 +15,7 @@ export default class Index extends Component {
 
   componentWillMount () { }
 
-  componentDidMount () { 
-
-    console.log(this.props)
-  }
+  componentDidMount () { }
 
   componentWillUnmount () { }
 
@@ -52,8 +52,11 @@ export default class Index extends Component {
     return (
       <View className='index'>
         <Text>Hello world! {this.props.name}</Text>
-        <Button onClick={this.handleClickx} >{this.props.name}</Button>
-        <Button onClick={this.handleClick} >{this.props.name}</Button>
+        <AtButton type='primary' onClick={this.handleClickx} >{this.props.name}</AtButton>
+        <AtButton loading onClick={this.handleClick} >{this.props.name}</AtButton>
+        <View className='at-icon at-icon-settings'></View>
+        <AtIcon value='clock' size='70' color='#F00'></AtIcon>
+        <AtToast isOpened text="你好" icon="check"></AtToast>
       </View>
     )
   }
