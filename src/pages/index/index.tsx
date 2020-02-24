@@ -1,12 +1,21 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import {connect} from '@tarojs/redux'
+import { View, Text, Button } from '@tarojs/components'
 import './index.less'
 
+const mapStateToProps = state=>{
+  return {...state.count};
+} 
+
+@connect(mapStateToProps)
 export default class Index extends Component {
 
   componentWillMount () { }
 
-  componentDidMount () { }
+  componentDidMount () { 
+
+    console.log(this.props)
+  }
 
   componentWillUnmount () { }
 
@@ -25,10 +34,26 @@ export default class Index extends Component {
     navigationBarTitleText: '首页'
   }
 
+  handleClickx = ()=>{
+    this.props.dispatch({
+      type: 'count/add',
+      data:{name: "hhh"}
+    })
+  }
+
+  handleClick = ()=>{
+    this.props.dispatch({
+      type: 'count/preAdd',
+      data:{name: "hhh"}
+    })
+  }
+
   render () {
     return (
       <View className='index'>
-        <Text>Hello world!</Text>
+        <Text>Hello world! {this.props.name}</Text>
+        <Button onClick={this.handleClickx} >{this.props.name}</Button>
+        <Button onClick={this.handleClick} >{this.props.name}</Button>
       </View>
     )
   }
